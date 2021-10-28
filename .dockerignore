@@ -1,0 +1,6 @@
+.dockerignore
+.env
+.gitignore
+.rubocop.yml
+.ruby_version
+Dockerfile
