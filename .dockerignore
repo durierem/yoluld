@@ -2,5 +2,6 @@
 .env
 .gitignore
 .rubocop.yml
-.ruby_version
+.ruby-version
+docker-compose.yml
 Dockerfile
