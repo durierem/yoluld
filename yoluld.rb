@@ -1,7 +1,9 @@
 # frozen_string_literal: true
 
-require 'dotenv'
-Dotenv.load
+unless ENV['APP_ENV'] == 'production'
+  require 'dotenv'
+  Dotenv.load
+end
 
 require 'discordrb'
 
