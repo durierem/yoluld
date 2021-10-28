@@ -1,16 +1,9 @@
 # frozen_string_literal: true
 
-unless ENV['APP_ENV'] == 'production'
-  require 'dotenv'
-  Dotenv.load
-end
-
 require 'discordrb'
+require_relative 'lib/config'
 
-config = {
-  bot_token: ENV['BOT_TOKEN']
-}
-
+config = Config.new.load
 bot = Discordrb::Bot.new(token: config[:bot_token])
 
 bot.message(content: 'Ping!') do |event|
