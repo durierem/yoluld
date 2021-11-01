@@ -5,10 +5,11 @@ unless ENV['APP_ENV'] == 'production'
   Dotenv.load
 end
 
-class Config < OpenStruct
-  def load
-    self.env = ENV['APP_ENV']
-    self.bot_token = ENV['BOT_TOKEN']
-    self
+class Config < Hash
+  def self.load
+    new.merge(
+      env: ENV['APP_ENV'],
+      bot_token: ENV['BOT_TOKEN']
+    )
   end
 end

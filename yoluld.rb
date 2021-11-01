@@ -3,7 +3,7 @@
 require 'discordrb'
 require_relative 'lib/config'
 
-config = Config.new.load
+config = Config.load
 bot = Discordrb::Bot.new(token: config[:bot_token])
 
 bot.message(content: 'Ping!') do |event|
