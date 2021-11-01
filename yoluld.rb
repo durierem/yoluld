@@ -7,7 +7,7 @@ config = Config.load
 bot = Discordrb::Bot.new(token: config[:bot_token])
 
 bot.message(content: 'Ping!') do |event|
-  event.respond 'Pong!'
+  event.respond("Pong! (#{((Time.now - event.timestamp) * 1000).round} ms)")
 end
 
 bot.message(content: '(╯°□°）╯︵ ┻━┻') do |event|
