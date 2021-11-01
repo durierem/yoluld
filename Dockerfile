@@ -13,11 +13,7 @@ RUN apt-get update \
 
 # Install gem dependencies
 COPY Gemfile Gemfile.lock ./
-RUN bundle config set --local without development \
-    && bundle install
-
-# Copy application files
-COPY . .
+RUN bundle install
 
 # Run the main command
 CMD ["ruby", "yoluld.rb"]
