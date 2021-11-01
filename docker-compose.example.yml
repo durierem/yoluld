@@ -4,5 +4,6 @@ services:
     environment:
       APP_ENV: production
       BOT_TOKEN: xxxxxxxxx
+      BOT_PREFIX: prefix!
     volumes:
       - .:/app

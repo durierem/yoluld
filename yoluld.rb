@@ -4,9 +4,12 @@ require 'discordrb'
 require_relative 'lib/config'
 
 config = Config.load
-bot = Discordrb::Bot.new(token: config[:bot_token])
+bot = Discordrb::Commands::CommandBot.new(
+  token: config[:bot_token],
+  prefix: config[:bot_prefix]
+)
 
-bot.message(content: 'Ping!') do |event|
+bot.command :ping do |event|
   event.respond("Pong! (#{((Time.now - event.timestamp) * 1000).round} ms)")
 end
 
