@@ -6,10 +6,8 @@ RUN bundle config --global frozen 1
 # Set the working directory
 WORKDIR /app
 
-# Install libsodium (external dependency for discordrb)
-# https://github.com/shardlab/discordrb/wiki/Installing-libsodium
-RUN apt-get update \
-    && apt-get install --assume-yes libsodium-dev
+# Install libsodium and opus (external dependencies for using voice features)
+RUN apt-get update && apt-get install --yes libsodium-dev libopus-dev ffmpeg
 
 # Install gem dependencies
 COPY Gemfile Gemfile.lock ./
