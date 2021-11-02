@@ -5,3 +5,4 @@
 .ruby-version
 docker-compose.yml
 Dockerfile
+.byebug_history

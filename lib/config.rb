@@ -10,7 +10,8 @@ class Config < Hash
     new.merge(
       env: ENV['APP_ENV'],
       bot_token: ENV['BOT_TOKEN'],
-      bot_prefix: ENV['BOT_PREFIX']
+      bot_prefix: ENV['BOT_PREFIX'],
+      bot_id: ENV['BOT_ID'].to_i
     )
   end
 end
