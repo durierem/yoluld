@@ -1,33 +1,39 @@
 # frozen_string_literal: true
 
 require 'discordrb'
-require_relative 'lib/config'
 
-config = Config.load
+require_relative 'lib/config'
+require_relative 'lib/mongoidal'
+require_relative 'lib/server_settings'
+require_relative 'lib/command_containers/pinger'
+require_relative 'lib/command_containers/autojoin_setting_manager'
+require_relative 'lib/event_containers/autojoiner'
+require_relative 'lib/event_containers/server_registerer'
+
 bot = Discordrb::Commands::CommandBot.new(
-  token: config[:bot_token],
-  prefix: config[:bot_prefix]
+  token: Config.get(:bot_token),
+  prefix: Config.get(:bot_prefix)
 )
 
-bot.command(:ping, description: 'You alive dude?') do |event|
-  event.respond("Pong! (#{((Time.now - event.timestamp) * 1000).round} ms)")
-end
+# MESSAGES
 
 bot.message(content: '(╯°□°）╯︵ ┻━┻') do |event|
   event.respond '┬─┬ノ( º _ ºノ)'
 end
 
-bot.voice_state_update(
-  from: not!(config[:bot_id]),
-  self_mute: false,
-  self_deaf: false
-) do |event|
-  if bot.voices.empty?
-    voice_bot = bot.voice_connect(event.channel)
-    voice_bot.play_file('./assets/laugh.mp3')
-    voice_bot.destroy
-  end
-end
+# COMMANDS
 
+bot.include! Pinger
+bot.include! AutojoinSettingManager
+
+# EVENTS
+
+bot.include! Autojoiner
+bot.include! ServerRegisterer
+
+# Display the bot invite url for convenience
+puts bot.invite_url
+
+# Start the bot
 at_exit { bot.stop }
 bot.run
