@@ -5,7 +5,7 @@ require 'byebug'
 module Autojoiner
   extend Discordrb::EventContainer
 
-  voice_state_update from: not!(Config.get(:bot_id)) do |event|
+  voice_state_update from: not!(Config.get(:application_id)) do |event|
     autojoin = ServerSettings.find_by(server_id: event.server.id).autojoin
     if autojoin && event.bot.voices.empty?
       voice_bot = event.bot.voice_connect(event.channel)
