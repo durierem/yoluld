@@ -2,7 +2,7 @@
 
 require 'mongo'
 
-# Basically a mini ODM for Mongo that wraps CRUD operations.
+# Basically a mini ODM for Mongo that wraps up CRUD operations.
 class Mongoidal
   @@client = Mongo::Client.new(ENV['MONGO_CONNSTRING'])
 
@@ -19,15 +19,19 @@ class Mongoidal
     document.nil? ? nil : new(document)
   end
 
+  def self.find_or_create_by(query)
+    document = collection.find(query).first
+    return new(document) unless document.nil?
+
+    new_document = new(query)
+    new_document.save ? new_document : nil
+  end
+
+  attr_reader :_id
+
   def initialize(attributes)
     attributes&.each do |attribute, value|
       instance_variable_set("@#{attribute}", value)
-      self.class.define_method(attribute) do
-        instance_variable_get("@#{attribute}")
-      end
-      self.class.define_method("#{attribute}=") do |argument|
-        instance_variable_set("@#{attribute}", argument)
-      end
     end
   end
 

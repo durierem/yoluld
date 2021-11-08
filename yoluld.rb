@@ -8,7 +8,6 @@ require_relative 'lib/server_settings'
 require_relative 'lib/command_containers/pinger'
 require_relative 'lib/command_containers/autojoin_setting_manager'
 require_relative 'lib/event_containers/autojoiner'
-require_relative 'lib/event_containers/server_registerer'
 
 bot = Discordrb::Commands::CommandBot.new(
   token: Config.get(:bot_token),
@@ -29,7 +28,6 @@ bot.include! AutojoinSettingManager
 # EVENTS
 
 bot.include! Autojoiner
-bot.include! ServerRegisterer
 
 # Display the bot invite url for convenience
 puts bot.invite_url

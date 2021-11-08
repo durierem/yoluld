@@ -13,15 +13,15 @@ module AutojoinSettingManager
   }
 
   command :autojoin, options do |event, arg|
-    current_settings = ServerSettings.find_by(server_id: event.server.id)
+    settings = ServerSettings.find_or_create_by(server_id: event.server.id)
 
     if arg.nil?
-      event.respond("Current autojoin value: **#{current_settings.autojoin}**")
+      event.respond("Current autojoin value: **#{settings.autojoin}**")
       break
     end
 
-    current_settings.autojoin = arg
-    if current_settings.save
+    settings.autojoin = arg
+    if settings.save
       event.respond("Autojoin set to: **#{arg}**")
     else
       event.respond('Failed to change setting')

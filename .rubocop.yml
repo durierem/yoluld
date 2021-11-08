@@ -4,6 +4,9 @@ AllCops:
   Exclude:
     - docker/**/*
 
+Layout/LineLength:
+  Max: 80
+
 Style/ClassVars:
   Enabled: false
 
