@@ -4,7 +4,7 @@ require 'mongo'
 
 # Basically a mini ODM for Mongo that wraps CRUD operations.
 class Mongoidal
-  @@client = Mongo::Client.new('mongodb://localhost:27017/yoluld')
+  @@client = Mongo::Client.new(ENV['MONGO_CONNSTRING'])
 
   def self.collection
     @@client[to_s]
