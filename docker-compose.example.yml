@@ -1,10 +1,24 @@
 services:
   yoluld:
+    depends_on:
+      - mongo
     image: yoluld:latest
     environment:
-      APP_ENV: production
-      BOT_TOKEN: xxxxxxxxx
-      BOT_PREFIX: prefix!
-      BOT_ID: xxxxxx
+      BOT_ENV: production
+      BOT_TOKEN: XXXXXXXXXXXXXXXX
+      BOT_PREFIX: dev!
+      APPLICATION_ID: XXXXXXXXXXXXXXXX
+      MONGO_CONNSTRING: mongodb://mongo:27017/yoluld
     volumes:
       - .:/app
+
+  mongo:
+    image: mongo
+    ports:
+      - 27017:27017
+    environment:
+      MONGO_ININITDB_ROOT_USERNAME: ruby
+      MONGO_ININITDB_ROOT_PASSWORD: ruby
+      MONGO_ININITDB_DATABASE: yoluld
+    volumes:
+      - ./docker/mongo/data/:/data/db

@@ -34,8 +34,9 @@ Command | Info
 ------- | ----
 `help` | Display help about other commands
 `ping` | Respond with "Pong!" and the latency in ms (told you it was best feature)
+`autojoin` | Manages the autojoin feature. No argument to show current value. Append `true` or `false` to update the setting.
 
-## Setup your own application
+## Setup
 
 The simplest way to deploy the bot is to use the provided `Dockerfile` and
 `docker-compose`. An example of `docker-compose.yml` is provided so you can
@@ -43,10 +44,11 @@ set up the appropriate environment variables.
 
 Variable | Info
 -------- | ----
-`APP_ENV` | If set to `development`, load environment variables from `.env`. Can be pretty much anything. Not very useful. Fancy stuff.
-`BOT_TOKEN` | The **bot** token that you can find on your application corresponding page on the Discord Developer Portal.
-`BOT_ID` | The **application** (talk about naming things...) ID that you can also find on the Discord Developer Portal.
+`BOT_ENV` | If set to `development`, load environment variables from `.env`. Can be pretty much anything. Not very useful. Fancy stuff.
+`BOT_TOKEN` | The bot token that you can find on your application corresponding page on the Discord Developer Portal.
+`APPLICATION_ID` | The application ID that you can also find on the Discord Developer Portal.
 `BOT_PREFIX` | The prefix to use for commands. For example in `prefix!help` the prefix is `prefix!`.
+`MONGO_CONNSTRING` | The connection string to connect to MongoDB. MongoDB is used to store per server preferences.
 
 Build the Docker image `docker build -t yoluld .` and start the container with
 `docker-compose up`.
