@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
 class ServerSettings < Mongoidal
-  attr_reader :server_id, :autojoin
+  attr_reader :server_id
+  attr_accessor :autojoin
 
   def initialize(...)
     super(...)
