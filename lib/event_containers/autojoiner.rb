@@ -13,6 +13,7 @@ module Autojoiner
 
       voice_bot = @event.bot.voice_connect(@event.channel)
       voice_bot.play_file(File.join(Dir.pwd, 'assets', 'laugh.mp3'))
+      voice_bot.destroy
     end
 
     private
