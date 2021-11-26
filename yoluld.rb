@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
 require 'discordrb'
+require 'dotenv'
+
+Dotenv.load
 
 require_relative 'lib/config'
 require_relative 'lib/mongoidal'
@@ -10,8 +13,8 @@ require_relative 'lib/command_containers/autojoin_setting_manager'
 require_relative 'lib/event_containers/autojoiner'
 
 bot = Discordrb::Commands::CommandBot.new(
-  token: Config.get(:bot_token),
-  prefix: Config.get(:bot_prefix)
+  token: Config.fetch(:bot_token),
+  prefix: Config.fetch(:bot_prefix)
 )
 
 # MESSAGES

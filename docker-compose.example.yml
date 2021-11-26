@@ -4,7 +4,6 @@ services:
       - mongo
     image: yoluld:latest
     environment:
-      BOT_ENV: production
       BOT_TOKEN: XXXXXXXXXXXXXXXX
       BOT_PREFIX: dev!
       APPLICATION_ID: XXXXXXXXXXXXXXXX

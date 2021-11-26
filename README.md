@@ -44,7 +44,6 @@ set up the appropriate environment variables.
 
 Variable | Info
 -------- | ----
-`BOT_ENV` | If set to `development`, load environment variables from `.env`. Can be pretty much anything. Not very useful. Fancy stuff.
 `BOT_TOKEN` | The bot token that you can find on your application corresponding page on the Discord Developer Portal.
 `APPLICATION_ID` | The application ID that you can also find on the Discord Developer Portal.
 `BOT_PREFIX` | The prefix to use for commands. For example in `prefix!help` the prefix is `prefix!`.
