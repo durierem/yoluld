@@ -9,7 +9,7 @@ require_relative 'lib/config'
 require_relative 'lib/mongoidal'
 require_relative 'lib/server_settings'
 require_relative 'lib/command_containers/pinger'
-require_relative 'lib/command_containers/autojoin_setting_manager'
+require_relative 'lib/command_containers/server_settings_manager'
 require_relative 'lib/event_containers/autojoiner'
 
 bot = Discordrb::Commands::CommandBot.new(
@@ -26,7 +26,7 @@ end
 # COMMANDS
 
 bot.include! Pinger
-bot.include! AutojoinSettingManager
+bot.include! ServerSettingsManager
 
 # EVENTS
 

@@ -34,7 +34,8 @@ Command | Info
 ------- | ----
 `help` | Display help about other commands
 `ping` | Respond with "Pong!" and the latency in ms (told you it was best feature)
-`autojoin` | Manages the autojoin feature. No argument to show current value. Append `true` or `false` to update the setting.
+`show` | Show a setting value
+`set`  | Set a setting value
 
 ## Setup
 
