@@ -14,7 +14,7 @@ class ServerSettings < Mongoidal
       @autojoin = true
     in 'false'
       @autojoin = false
-    in [TrueClass, FalseClass]
+    in [true, false]
       @autojoin = val
     else
       raise ArgumentError

@@ -5,7 +5,7 @@ module ServerSettingsManager
 
   show_attributes = {
     description: 'Shows settings value.',
-    usage: 'show SETTING_NAME',
+    usage: 'show <setting_name>',
     arg_types: [String],
     min_args: 1,
     max_args: 1,
@@ -24,7 +24,7 @@ module ServerSettingsManager
 
   set_attributes = {
     description: 'Sets settings value.',
-    usage: 'set SETTING_NAME NEW_VALUE',
+    usage: 'set <setting_name> <new_value>',
     min_args: 2,
     max_args: 2,
     rescue: 'ServerSettingsManager failed with: %exception%.'
@@ -37,7 +37,7 @@ module ServerSettingsManager
     begin
       settings.public_send("#{setting_name}=", setting_arg)
       if settings.save
-        event.respond("Setting `#{setting_name}` set to: `#{arg}`")
+        event.respond("Setting `#{setting_name}` set to: `#{setting_arg}`")
       else
         event.respond("Failed to update setting: `#{setting_name}`")
       end

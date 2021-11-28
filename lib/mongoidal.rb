@@ -4,33 +4,34 @@ require 'mongo'
 
 # Basically a mini ODM for Mongo that wraps up CRUD operations.
 class Mongoidal
-  @@client = Mongo::Client.new(ENV['MONGO_CONNSTRING'])
+  class << self
+    def collection
+      @client ||= Mongo::Client.new(ENV['MONGO_URI'])
+      @client[to_s]
+    end
 
-  def self.collection
-    @@client[to_s]
-  end
+    def create(attributes = {})
+      new(attributes).save
+    end
 
-  def self.create(attributes)
-    new(attributes).save
-  end
+    def find_by(query)
+      document = collection.find(query).first
+      document.nil? ? nil : new(document)
+    end
 
-  def self.find_by(query)
-    document = collection.find(query).first
-    document.nil? ? nil : new(document)
-  end
+    def find_or_create_by(query)
+      document = collection.find(query).first
+      return new(document) unless document.nil?
 
-  def self.find_or_create_by(query)
-    document = collection.find(query).first
-    return new(document) unless document.nil?
-
-    new_document = new(query)
-    new_document.save ? new_document : nil
+      new_document = new(query)
+      new_document.save ? new_document : nil
+    end
   end
 
   attr_reader :_id
 
-  def initialize(attributes)
-    attributes&.each do |attribute, value|
+  def initialize(attributes = {})
+    attributes.each do |attribute, value|
       instance_variable_set("@#{attribute}", value)
     end
   end
@@ -46,9 +47,10 @@ class Mongoidal
   end
 
   def to_h
-    instance_variables.map do |var|
+    ary = instance_variables.map do |var|
       [var.to_s.delete_prefix('@'), instance_variable_get(var)]
-    end.to_h
+    end
+    ary.to_h
   end
 
   def collection

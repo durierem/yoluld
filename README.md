@@ -48,7 +48,7 @@ Variable | Info
 `BOT_TOKEN` | The bot token that you can find on your application corresponding page on the Discord Developer Portal.
 `APPLICATION_ID` | The application ID that you can also find on the Discord Developer Portal.
 `BOT_PREFIX` | The prefix to use for commands. For example in `prefix!help` the prefix is `prefix!`.
-`MONGO_CONNSTRING` | The connection string to connect to MongoDB. MongoDB is used to store per server preferences.
+`MONGO_URI` | The connection string to connect to MongoDB. MongoDB is used to store per server preferences.
 
 Build the Docker image `docker build -t yoluld .` and start the container with
 `docker-compose up`.

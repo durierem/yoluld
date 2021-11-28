@@ -14,7 +14,8 @@ require_relative 'lib/event_containers/autojoiner'
 
 bot = Discordrb::Commands::CommandBot.new(
   token: Config.fetch(:bot_token),
-  prefix: Config.fetch(:bot_prefix)
+  prefix: Config.fetch(:bot_prefix),
+  fancy_log: true
 )
 
 # MESSAGES
