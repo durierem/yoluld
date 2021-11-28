@@ -7,8 +7,5 @@ AllCops:
 Layout/LineLength:
   Max: 80
 
-Style/ClassVars:
-  Enabled: false
-
 Style/Documentation:
   Enabled: false

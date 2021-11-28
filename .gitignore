@@ -2,3 +2,4 @@
 docker-compose.yml
 .byebug_history
 docker
+*.log
