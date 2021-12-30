@@ -4,6 +4,11 @@
   <p>
     <em>Daemon of the Yolul · Destroyer of Guilds · Chaotic Sheep's Herald</em>
   <p>
+  <p>
+    <a href="https://github.com/durierem/yoluld/actions/workflows/build.yml">
+      <img alt="Build" src="https://github.com/durierem/yoluld/actions/workflows/build.yml/badge.svg?branch=main">
+    </a>
+  </p>
 </div>
 
 ## About
