@@ -1,18 +1,16 @@
-FROM ruby:3.1.0
-
-# Throw errors if Gemfile has been modified since Gemfile.lock
-RUN bundle config --global frozen 1
+FROM ruby:3.1.0-alpine
 
 # Set the working directory
 WORKDIR /app
 
 # Install libsodium and opus (external dependencies for using voice features)
-RUN apt-get update && apt-get install --yes libsodium-dev libopus-dev ffmpeg
+RUN apk add build-base libsodium-dev libopusenc-dev ffmpeg
 
 # Install gem dependencies
 COPY Gemfile Gemfile.lock ./
-RUN bundle config set --local without development test \
+RUN bundle config --global frozen 1 \
+    && bundle config set --global without development test \
     && bundle install
 
 # Run the main command
-CMD ["ruby", "yoluld.rb"]
+CMD bundle exec ruby yoluld.rb

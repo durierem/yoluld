@@ -66,9 +66,9 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
-  discordrb
-  dotenv
-  mongo
+  discordrb (~> 3.4)
+  dotenv (~> 2.7, >= 2.7.6)
+  mongo (~> 2.17)
   rubocop
   rubocop-performance
 
