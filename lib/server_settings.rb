@@ -5,7 +5,7 @@ class ServerSettings < Mongoidal
 
   def initialize(...)
     super(...)
-    @autojoin = @autojoin.nil? ? true : @autojoin
+    @autojoin = true if @autojoin.nil?
   end
 
   def autojoin=(val)
