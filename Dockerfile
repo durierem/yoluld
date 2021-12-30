@@ -1,4 +1,4 @@
-FROM ruby:3.0.2-bullseye
+FROM ruby:3.1.0
 
 # Throw errors if Gemfile has been modified since Gemfile.lock
 RUN bundle config --global frozen 1
@@ -11,7 +11,8 @@ RUN apt-get update && apt-get install --yes libsodium-dev libopus-dev ffmpeg
 
 # Install gem dependencies
 COPY Gemfile Gemfile.lock ./
-RUN bundle install
+RUN bundle config set --local without development test \
+    && bundle install
 
 # Run the main command
 CMD ["ruby", "yoluld.rb"]
