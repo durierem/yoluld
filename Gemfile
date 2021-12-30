@@ -11,4 +11,5 @@ group :development do
   gem 'byebug'
   gem 'dotenv'
   gem 'rubocop', require: false
+  gem 'rubocop-performance', require: false
 end
