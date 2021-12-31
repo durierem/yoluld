@@ -12,5 +12,7 @@ RUN bundle config --global frozen 1 \
     && bundle config set --global without development test \
     && bundle install
 
+COPY . .
+
 # Run the main command
 CMD bundle exec ruby yoluld.rb
